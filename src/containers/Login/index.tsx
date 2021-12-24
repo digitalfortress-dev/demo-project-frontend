@@ -6,9 +6,10 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import { useStyles } from "./styles";
 
-export default function Login() {
-  const classes = useStyles();
+export default function Login(props: any) {
   const navigate = useNavigate();
+  const classes = useStyles();
+  const { logIn } = props;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +24,8 @@ export default function Login() {
       "user-patient",
       JSON.stringify({ username, password })
     );
-    navigate("/");
+    logIn();
+    navigate("/home");
   };
 
   return (
@@ -32,7 +34,7 @@ export default function Login() {
         <h3 className={classes.title}>Login</h3>
         <TextField
           label="Username"
-          size='small'
+          size="small"
           value={username}
           className={clsx(classes.w100, classes.mrb15, classes.input)}
           onChange={onSetEmail}
@@ -41,7 +43,7 @@ export default function Login() {
           type="password"
           label="Password"
           value={password}
-          size='small'
+          size="small"
           onChange={onSetPassword}
           className={clsx(classes.w100, classes.mrb15, classes.input)}
         />

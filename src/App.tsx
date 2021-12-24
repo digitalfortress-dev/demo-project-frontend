@@ -3,8 +3,9 @@ import {
   Routes,
   Route,
   Navigate,
+  useNavigate,
 } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import HomePage from "./pages/home";
 import LoginPage from "./pages/login";
@@ -21,12 +22,17 @@ function App() {
     localStorage.removeItem("user-patient");
     setUserLoggedIn(false);
   };
+
+  const logIn = () => {
+    setUserLoggedIn(true);
+  };
+
   return (
     <Router>
       {userLoggedIn ? (
         <MainLayout logOut={logOut}>{AuthRoutes()}</MainLayout>
       ) : (
-        <AuthLayout>{UnAuthRoutes()}</AuthLayout>
+        <AuthLayout>{UnAuthRoutes(logIn)}</AuthLayout>
       )}
     </Router>
   );
@@ -41,12 +47,12 @@ function AuthRoutes() {
   );
 }
 
-function UnAuthRoutes() {
+function UnAuthRoutes(logIn: any) {
   return (
     <Routes>
-      <Route path="*" element={<Navigate to="/login" />} />
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage logIn={logIn} />} />
       <Route path="/patient-registration" element={<PatientRegister />} />
+      <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
 }
