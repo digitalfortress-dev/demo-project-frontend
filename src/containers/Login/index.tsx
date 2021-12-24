@@ -1,12 +1,14 @@
 import { ChangeEvent, useState } from "react";
 import { Button, TextField } from "@mui/material";
-import { useStyles } from "./styles";
 import clsx from "clsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+import { useStyles } from "./styles";
 
 export default function Login() {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +19,11 @@ export default function Login() {
     setPassword(e.target.value);
 
   const onLogin = () => {
-    localStorage.setItem('user-patient', JSON.stringify({username, password}))
+    localStorage.setItem(
+      "user-patient",
+      JSON.stringify({ username, password })
+    );
+    navigate("/");
   };
 
   return (
@@ -26,6 +32,7 @@ export default function Login() {
         <h3 className={classes.title}>Login</h3>
         <TextField
           label="Username"
+          size='small'
           value={username}
           className={clsx(classes.w100, classes.mrb15, classes.input)}
           onChange={onSetEmail}
@@ -34,6 +41,7 @@ export default function Login() {
           type="password"
           label="Password"
           value={password}
+          size='small'
           onChange={onSetPassword}
           className={clsx(classes.w100, classes.mrb15, classes.input)}
         />
@@ -48,7 +56,8 @@ export default function Login() {
           {isLoading ? "Logging In" : "Log In"}
         </Button>
         <Link to="/patient-registration" className={classes.link}>
-          Go to Booking <ArrowForwardIosIcon className={classes.arrowIcon} />{" "}
+          <span>Go to Booking </span>
+          <ArrowForwardIosIcon className={classes.arrowIcon} />{" "}
         </Link>
       </form>
     </div>

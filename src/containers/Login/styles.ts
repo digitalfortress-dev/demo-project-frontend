@@ -30,8 +30,11 @@ export const useStyles = makeStyles(() => ({
   },
   arrowIcon: {
     fontSize: "13px !important",
+    marginLeft: 5,
   },
   link: {
+    display: 'flex',
+    alignItems: 'center',
     textDecoration: "none",
     color: "#fff",
     "&:hover": {

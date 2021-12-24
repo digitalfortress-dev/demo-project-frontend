@@ -27,7 +27,7 @@ const Header = (props: any) => {
 
   const onLogout = () => {
     logOut();
-    navigate("/");
+    navigate("/login");
   };
 
   return (

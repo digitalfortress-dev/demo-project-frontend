@@ -4,6 +4,7 @@ const useStyles = makeStyles(() => ({
   paper: {
     position: "relative",
     height: '100vh',
+    overflow: 'hidden',
   },
   canvas1: {
     background:

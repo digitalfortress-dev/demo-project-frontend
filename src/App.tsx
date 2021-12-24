@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route,  } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useState } from "react";
 
 import HomePage from "./pages/home";
@@ -14,8 +19,8 @@ function App() {
 
   const logOut = () => {
     localStorage.removeItem("user-patient");
-    setUserLoggedIn(false)
-  }
+    setUserLoggedIn(false);
+  };
   return (
     <Router>
       {userLoggedIn ? (
@@ -31,6 +36,7 @@ function AuthRoutes() {
   return (
     <Routes>
       <Route index element={<HomePage />} />
+      <Route path="*" element={<Navigate to="/" />}></Route>
     </Routes>
   );
 }
@@ -38,7 +44,8 @@ function AuthRoutes() {
 function UnAuthRoutes() {
   return (
     <Routes>
-      <Route index element={<LoginPage />} />
+      <Route path="*" element={<Navigate to="/login" />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/patient-registration" element={<PatientRegister />} />
     </Routes>
   );
