@@ -1,14 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Paper } from "@mui/material";
-
-import { useStyles } from "./styles";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 
+import { useStyles } from "./styles";
+
 const items = [] as any;
+interface IHeader {
+  logOut: () => void,
+}
 
 // Header component
-const Header = (props: any) => {
+const Header = (props: IHeader) => {
   const classes = useStyles();
   const navigate = useNavigate();
 

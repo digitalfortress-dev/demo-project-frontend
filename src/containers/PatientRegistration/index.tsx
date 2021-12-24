@@ -10,7 +10,11 @@ import UploadFile from "../../components/UploadFile";
 import { useStyles } from "./styles";
 import { validateEmail } from "../../utils";
 
-function PatientRegistration(props: any) {
+interface IProps {
+  userLoggedIn: boolean,
+}
+
+function PatientRegistration(props: IProps) {
   const { userLoggedIn } = props;
   const classes = useStyles();
   const navigate = useNavigate();

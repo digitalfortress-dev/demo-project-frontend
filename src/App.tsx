@@ -37,7 +37,11 @@ function App() {
   );
 }
 
-function AuthRoutes(props: any) {
+interface IAuthProps {
+  userLoggedIn: boolean;
+}
+
+function AuthRoutes(props: IAuthProps) {
   const { userLoggedIn } = props;
 
   return (
@@ -52,7 +56,12 @@ function AuthRoutes(props: any) {
   );
 }
 
-function UnAuthRoutes(props: any) {
+interface IUnAuthProps {
+  userLoggedIn: boolean,
+  logIn: () => void;
+}
+
+function UnAuthRoutes(props: IUnAuthProps) {
   const { logIn, userLoggedIn } = props;
   return (
     <Routes>

@@ -1,7 +1,11 @@
 import { Paper } from "@mui/material";
 import { useStyles } from './styles';
 
-function Layout(props: any) {
+interface ILayout {
+  children: JSX.Element,
+}
+
+function Layout(props: ILayout) {
   const classes = useStyles();
   const { children } = props;
 

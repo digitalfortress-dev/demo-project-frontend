@@ -6,7 +6,11 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import { useStyles } from "./styles";
 
-export default function Login(props: any) {
+interface ILogin {
+  logIn: () => void,
+}
+
+export default function Login(props: ILogin) {
   const navigate = useNavigate();
   const classes = useStyles();
   const { logIn } = props;

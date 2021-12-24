@@ -4,7 +4,12 @@ import Header from "./Header";
 import { Paper } from "@mui/material";
 import { useStyles } from "./styles";
 
-function Layout(props: any) {
+interface ILayout {
+  children: JSX.Element,
+  logOut: () => void,
+}
+
+function Layout(props: ILayout) {
   const { children, logOut } = props;
   const classes = useStyles();
 
