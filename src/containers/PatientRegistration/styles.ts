@@ -13,14 +13,16 @@ export const useStyles = makeStyles(() => ({
   flex: {
     display: "flex",
   },
+  spaceBetween: {
+    justifyContent: "space-between",
+  },
   form: {
     padding: "30px 65px",
     borderRadius: 4,
     maxWidth: 450,
     background: "rgba(255, 255, 255, 0.12)",
-    color: "#fff",
-    border: '1px solid rgba(255, 255, 255, 0.39)',
-    boxShadow: ' -1px 6px 37px 0px rgba(34,25,77,0.2) inset',
+    border: "1px solid rgba(255, 255, 255, 0.39)",
+    boxShadow: " -1px 6px 37px 0px rgba(34,25,77,0.1) inset",
   },
   w100: {
     width: "100%",
@@ -63,9 +65,12 @@ export const useStyles = makeStyles(() => ({
   title: {
     textAlign: "center",
   },
+  white: {
+    color: "#fff",
+  },
   input: {
     "input:-internal-autofill-selected": {
-      backgroundColor: 'red !important',
+      backgroundColor: "red !important",
     },
     "& .MuiOutlinedInput-root": {
       borderColor: "#fff",
@@ -86,12 +91,16 @@ export const useStyles = makeStyles(() => ({
     "& .MuiOutlinedInput-notchedOutline": {
       borderColor: "#fff",
     },
-    "& .MuiSvgIcon-root" : {
-      color: '#fff',
-    }
+    "& .MuiSvgIcon-root": {
+      color: "#fff",
+    },
+  },
+  submitBtn: {
+    backgroundColor: "#85D5EF !important",
   },
   btn: {
-    backgroundColor: '#85D5EF !important',
-    boxShadow: 'none !important',
-  }
+    boxShadow: "none !important",
+    width: 200,
+    textTransform: "capitalize !important" as any,
+  },
 }));

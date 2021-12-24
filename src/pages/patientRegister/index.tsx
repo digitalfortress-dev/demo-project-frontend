@@ -1,6 +1,6 @@
-import PatientRegistration from '../../containers/PatientRegistration';
+import PatientRegistration from "../../containers/PatientRegistration";
 
-function PatientRegisterPage() {
-  return <PatientRegistration />
+function PatientRegisterPage(props: any) {
+  return <PatientRegistration {...props} />;
 }
 export default PatientRegisterPage;

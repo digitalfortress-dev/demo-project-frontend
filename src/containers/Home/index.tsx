@@ -5,13 +5,27 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import moment from "moment";
+import { Button, TableFooter, TablePagination, TextField } from "@mui/material";
+import { ChangeEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
+import ContactsIcon from "@mui/icons-material/Contacts";
 
 import { useStyles, PaginationStyle } from "./styles";
-import { TableFooter, TablePagination } from '@mui/material';
 
 export default function Home() {
   const classes = useStyles();
+  const nanigate = useNavigate();
 
+  const [patient, setPatient] = useState("");
+
+  const handleChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setPatient(e.target.value);
+  };
+
+  const onAddPatient = () => {
+    nanigate("/patient-registration");
+  };
   function createData(
     first_name: string,
     last_name: string,
@@ -27,45 +41,68 @@ export default function Home() {
     createData(
       "Frozen ",
       "yoghurt",
-      "Cupcake",
+      "Cupcake@gmail.com",
       "52452452421",
       new Date(),
-      "Viet nam"
+      "VietNam"
     ),
     createData(
       "Frozen ",
       "yoghurt",
-      "Cupcake",
+      "Cupcake@gmail.com",
       "52452452421",
       new Date(),
-      "Viet nam"
+      "VietNam"
     ),
     createData(
       "Frozen ",
       "yoghurt",
-      "Cupcake",
+      "Cupcake@gmail.com",
       "52452452421",
       new Date(),
-      "Viet nam"
+      "VietNam"
     ),
     createData(
       "Frozen ",
       "yoghurt",
-      "Cupcake",
+      "Cupcake@gmail.com",
       "52452452421",
       new Date(),
-      "Viet nam"
+      "VietNam"
     ),
   ];
 
   return (
     <div className={classes.homeContainer}>
-      <h2>Patients Registered</h2>
+      <div className={classes.header}>
+        <div className={classes.flexCenter}>
+          <ContactsIcon className={classes.contactIcon} />
+          <h1>Patients Registered</h1>
+        </div>
+        <div className={classes.flexCenter}>
+          <TextField
+            size="small"
+            placeholder="Search Patient"
+            value={patient}
+            onChange={handleChangeSearch}
+            className={classes.input}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.btn}
+            onClick={onAddPatient}
+            startIcon={<AddIcon />}
+          >
+            Add patient
+          </Button>
+        </div>
+      </div>
       <TableContainer className={classes.tableContainer}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <p className={classes.titleTable}>Patients</p>
+              <td className={classes.titleTable}>Patients</td>
             </TableRow>
             <TableRow>
               <TableCell>First Name</TableCell>
@@ -104,7 +141,7 @@ export default function Home() {
                 page={0}
                 // onChangePage={handleChangePage}
                 // onChangeRowsPerPage={handleChangeRowsPerPage}
-                labelRowsPerPage='Row per page'
+                labelRowsPerPage="Row per page"
               />
             </tr>
           </TableFooter>

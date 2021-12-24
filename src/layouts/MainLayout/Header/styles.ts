@@ -29,8 +29,9 @@ const useStyles = makeStyles(() => ({
     color: "#fff",
   },
   title: {
-    fontSize: "14px",
+    fontSize: "15px",
     margin: "10px",
+    fontWeight: 500,
   },
   label: {
     fontSize: 12,

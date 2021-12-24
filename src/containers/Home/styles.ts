@@ -1,12 +1,33 @@
 import { TablePagination } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { blue, grey } from "@mui/material/colors";
 import { makeStyles, withStyles } from "@mui/styles";
 
 export const useStyles = makeStyles(() => ({
   homeContainer: {
     height: "100%",
     marginTop: "30px",
-    padding: "0 15px",
+    padding: "0 20px",
+  },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  flexCenter: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  input: {
+    marginRight: '15px !important',
+  },
+  btn: {
+    boxShadow: 'none !important',
+    textTransform: 'capitalize !important' as any,
+  },
+  contactIcon: {
+    fontSize: '30px !important',
+    color: blue[500],
+    marginRight: 15,
   },
   tableContainer: {
     border: `1px solid  ${grey[300]} !important`,

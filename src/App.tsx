@@ -3,9 +3,8 @@ import {
   Routes,
   Route,
   Navigate,
-  useNavigate,
 } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import HomePage from "./pages/home";
 import LoginPage from "./pages/login";
@@ -30,28 +29,38 @@ function App() {
   return (
     <Router>
       {userLoggedIn ? (
-        <MainLayout logOut={logOut}>{AuthRoutes()}</MainLayout>
+        <MainLayout logOut={logOut}>{AuthRoutes({ userLoggedIn })}</MainLayout>
       ) : (
-        <AuthLayout>{UnAuthRoutes(logIn)}</AuthLayout>
+        <AuthLayout>{UnAuthRoutes({ logIn, userLoggedIn })}</AuthLayout>
       )}
     </Router>
   );
 }
 
-function AuthRoutes() {
+function AuthRoutes(props: any) {
+  const { userLoggedIn } = props;
+
   return (
     <Routes>
       <Route index element={<HomePage />} />
       <Route path="*" element={<Navigate to="/" />}></Route>
+      <Route
+        path="/patient-registration"
+        element={<PatientRegister userLoggedIn={userLoggedIn} />}
+      />
     </Routes>
   );
 }
 
-function UnAuthRoutes(logIn: any) {
+function UnAuthRoutes(props: any) {
+  const { logIn, userLoggedIn } = props;
   return (
     <Routes>
       <Route path="/login" element={<LoginPage logIn={logIn} />} />
-      <Route path="/patient-registration" element={<PatientRegister />} />
+      <Route
+        path="/patient-registration"
+        element={<PatientRegister userLoggedIn={userLoggedIn} />}
+      />
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );

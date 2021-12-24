@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import clsx from "clsx";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { useNavigate } from "react-router-dom";
 
 import DatePicker from "../../components/DatePicker";
 import UploadFile from "../../components/UploadFile";
@@ -9,14 +10,17 @@ import UploadFile from "../../components/UploadFile";
 import { useStyles } from "./styles";
 import { validateEmail } from "../../utils";
 
-function PatientRegistration() {
+function PatientRegistration(props: any) {
+  const { userLoggedIn } = props;
   const classes = useStyles();
+  const navigate = useNavigate();
+
   const [input, setInput] = useState({
     first_name: "",
     last_name: "",
     email: "",
     phone: "",
-    birthday: new Date("01/01/2000"),
+    birthday: null as (Date | null),
     address: "",
     booking_time: new Date(),
     file: {} as any,
@@ -32,7 +36,7 @@ function PatientRegistration() {
     setInput((pre) => ({ ...pre, [name]: value }));
   };
 
-  const onSelectBirthDay = (value: Date) => {
+  const onSelectBirthDay = (value: (Date | null)) => {
     setInput((pre) => ({ ...pre, birthday: value }));
   };
   const onSelectBookingTime = (value: Date) => {
@@ -63,6 +67,11 @@ function PatientRegistration() {
     const { first_name, last_name, email, file } = input;
     return !first_name || !last_name || !email || !!errEmail || !file.result;
   };
+
+  const onCancel = () => {
+    navigate("/");
+  };
+
   const onSubmitForm = () => {
     console.log(
       "🚀 ~ file: index.tsx ~ line 12 ~ PatientRegistration ~ input",
@@ -72,7 +81,11 @@ function PatientRegistration() {
 
   return (
     <div className={classes.container}>
-      <form className={classes.form}>
+      <form
+        className={clsx(classes.form, {
+          [classes.white]: !userLoggedIn,
+        })}
+      >
         <h3 className={classes.title}>Booking</h3>
         <div className={clsx(classes.flex)}>
           <TextField
@@ -81,7 +94,9 @@ function PatientRegistration() {
             label="First Name"
             value={input.first_name}
             onChange={handleChangeInput}
-            className={clsx(classes.w100, classes.mrb15, classes.mrr15, classes.input)}
+            className={clsx(classes.w100, classes.mrb15, classes.mrr15, {
+              [classes.input]: !userLoggedIn,
+            })}
           />
           <TextField
             size="small"
@@ -89,7 +104,9 @@ function PatientRegistration() {
             value={input.last_name}
             label="Last Name"
             onChange={handleChangeInput}
-            className={clsx(classes.w100, classes.mrb15,classes.input)}
+            className={clsx(classes.w100, classes.mrb15, {
+              [classes.input]: !userLoggedIn,
+            })}
           />
         </div>
         <TextField
@@ -100,7 +117,9 @@ function PatientRegistration() {
           helperText={errEmail}
           error={!!errEmail}
           onChange={handleChangeInput}
-          className={clsx(classes.w100, classes.mrb15, classes.input)}
+          className={clsx(classes.w100, classes.mrb15, {
+            [classes.input]: !userLoggedIn,
+          })}
         />
         <TextField
           size="small"
@@ -108,14 +127,19 @@ function PatientRegistration() {
           value={input.phone}
           label="Phone"
           onChange={handleChangeInput}
-          className={clsx(classes.w100, classes.mrb15, classes.input)}
+          className={clsx(classes.w100, classes.mrb15, {
+            [classes.input]: !userLoggedIn,
+          })}
         />
         <DatePicker
           name="birthday"
           value={input.birthday}
           label="Birthday"
           onChange={onSelectBirthDay}
-          className={clsx(classes.w100, classes.mrb15, classes.input)}
+          className={clsx(classes.w100, classes.mrb15, {
+            [classes.input]: !userLoggedIn,
+          })}
+          maxDate={new Date()}
         />
         <TextField
           size="small"
@@ -123,14 +147,19 @@ function PatientRegistration() {
           value={input.address}
           label="Address"
           onChange={handleChangeInput}
-          className={clsx(classes.w100, classes.mrb15, classes.input)}
+          className={clsx(classes.w100, classes.mrb15, {
+            [classes.input]: !userLoggedIn,
+          })}
         />
         <DatePicker
           name="booking_time"
           value={input.booking_time}
           label="Appointment time"
           onChange={onSelectBookingTime}
-          className={clsx(classes.w100, classes.mrb15, classes.input)}
+          className={clsx(classes.w100, classes.mrb15, {
+            [classes.input]: !userLoggedIn,
+          })}
+          minDate={new Date}
         />
 
         <div className={classes.mrb15}>
@@ -152,15 +181,24 @@ function PatientRegistration() {
           )}
           <p className={classes.subtitle}>Add a driver license picture </p>
         </div>
-
-        <Button
-          variant="contained"
-          className={clsx(classes.w100, classes.btn)}
-          onClick={onSubmitForm}
-          disabled={disableButton()}
-        >
-          Submit
-        </Button>
+        <div className={clsx(classes.flex, classes.spaceBetween)}>
+          <Button
+            variant="contained"
+            color="error"
+            className={clsx(classes.btn, classes.mrr15)}
+            onClick={onCancel}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            className={clsx(classes.btn, classes.submitBtn)}
+            onClick={onSubmitForm}
+            disabled={disableButton()}
+          >
+            Submit
+          </Button>
+        </div>
       </form>
     </div>
   );
