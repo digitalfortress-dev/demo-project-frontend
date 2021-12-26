@@ -11,10 +11,10 @@ function Layout(props: ILayout) {
 
   return (
     <Paper square className={classes.paper}>
-      <div>
+      {/* <div>
         <canvas className={classes.canvas1}></canvas>
         <canvas className={classes.canvas2}></canvas>
-      </div>
+      </div> */}
       {children}
     </Paper>
   );

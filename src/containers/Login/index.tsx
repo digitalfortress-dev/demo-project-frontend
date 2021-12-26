@@ -7,7 +7,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useStyles } from "./styles";
 
 interface ILogin {
-  logIn: () => void,
+  logIn: () => void;
 }
 
 export default function Login(props: ILogin) {
@@ -34,38 +34,46 @@ export default function Login(props: ILogin) {
 
   return (
     <div className={classes.container}>
-      <form className={classes.form}>
+      <div className={classes.canvas}>
+        <canvas className={classes.canvas1}></canvas>
+        <canvas className={classes.canvas2}></canvas>
         <h3 className={classes.title}>Login</h3>
-        <TextField
-          label="Username"
-          size="small"
-          value={username}
-          className={clsx(classes.w100, classes.mrb15, classes.input)}
-          onChange={onSetEmail}
-        />
-        <TextField
-          type="password"
-          label="Password"
-          value={password}
-          size="small"
-          onChange={onSetPassword}
-          className={clsx(classes.w100, classes.mrb15, classes.input)}
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          onClick={onLogin}
-          disabled={isLoading}
-          className={clsx(classes.w100, classes.mrb15, classes.btn)}
-        >
-          {isLoading ? "Logging In" : "Log In"}
-        </Button>
-        <Link to="/patient-registration" className={classes.link}>
-          <span>Go to Booking </span>
-          <ArrowForwardIosIcon className={classes.arrowIcon} />{" "}
-        </Link>
-      </form>
+      </div>
+      <div className={classes.content}>
+        <form className={classes.form}>
+          <h3 className={clsx(classes.textCenter, classes.fs32, classes.mrb10)}>Log Into Dashboard</h3>
+          <p className={clsx(classes.textCenter, classes.mrb50)}>Enter your login details below</p>
+          <TextField
+            label="Username"
+            size="small"
+            value={username}
+            className={clsx(classes.w100, classes.mrb15, classes.input)}
+            onChange={onSetEmail}
+          />
+          <TextField
+            type="password"
+            label="Password"
+            value={password}
+            size="small"
+            onChange={onSetPassword}
+            className={clsx(classes.w100, classes.mrb15, classes.input)}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={onLogin}
+            disabled={isLoading}
+            className={clsx(classes.w100, classes.mrb15, classes.btn)}
+          >
+            {isLoading ? "Logging In" : "Log In"}
+          </Button>
+          <Link to="/patient-registration" className={classes.link}>
+            <span>Go to Booking </span>
+            <ArrowForwardIosIcon className={classes.arrowIcon} />{" "}
+          </Link>
+        </form>
+      </div>
     </div>
   );
 }
