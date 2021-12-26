@@ -109,7 +109,7 @@ export const useStyles = makeStyles(() => ({
     textTransform: "capitalize !important" as any,
   },
   content: {
-    width: '50%',
+    width: '45%',
     height: '100%',
     // display: 'flex',
     alignItems: 'center',
@@ -117,7 +117,7 @@ export const useStyles = makeStyles(() => ({
   },
   canvas: {
     position: 'relative',
-    width: '50%',
+    width: '55%',
     height: '100%',
   },
   canvas1: {

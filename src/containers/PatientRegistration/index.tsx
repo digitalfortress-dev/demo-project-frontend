@@ -92,8 +92,7 @@ function PatientRegistration(props: IProps) {
           <h3 className={classes.title}>Booking</h3>
         </div>
       )}
-
-      <div className={classes.content}>
+      <div className={clsx(classes.content, {[classes.flex]: !userLoggedIn})}>
         <form
           className={clsx(classes.form, {
             [classes.white]: !userLoggedIn,
