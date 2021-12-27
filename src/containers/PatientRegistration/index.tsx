@@ -9,6 +9,7 @@ import UploadFile from "../../components/UploadFile";
 
 import { useStyles } from "./styles";
 import { validateEmail } from "../../utils";
+import { url } from "inspector";
 
 interface IProps {
   userLoggedIn: boolean;
@@ -18,7 +19,6 @@ function PatientRegistration(props: IProps) {
   const { userLoggedIn = true } = props;
   const classes = useStyles();
   const navigate = useNavigate();
-
   const [input, setInput] = useState({
     first_name: "",
     last_name: "",
@@ -84,21 +84,32 @@ function PatientRegistration(props: IProps) {
   };
 
   return (
-    <div className={classes.container}>
+    <div
+      className={clsx(classes.container, { [classes.bgGray]: userLoggedIn })}
+    >
       {!userLoggedIn && (
         <div className={classes.canvas}>
-          <canvas className={classes.canvas1}></canvas>
-          <canvas className={classes.canvas2}></canvas>
+          {/* <canvas className={classes.canvas1}></canvas>
+          <canvas className={classes.canvas2}></canvas> */}
           <h3 className={classes.title}>Booking</h3>
+          <div
+            style={{
+              backgroundImage: `url(${process.env.PUBLIC_URL} images/bg-service.jpeg)`,
+              backgroundSize: "cover",
+              height: "100%",
+            }}
+          ></div>
         </div>
       )}
-      <div className={clsx(classes.content, {[classes.flex]: !userLoggedIn})}>
+      <div className={clsx(classes.content, { [classes.flex]: !userLoggedIn })}>
+        <h3></h3>
         <form
           className={clsx(classes.form, {
             [classes.white]: !userLoggedIn,
+            [classes.border]: userLoggedIn
           })}
         >
-          <h3 className={classes.textCenter}>New Patient Registration</h3>
+          <h3 className={classes.textCenter}>Patient Registration Online</h3>
           <div className={clsx(classes.flex)}>
             <TextField
               size="small"

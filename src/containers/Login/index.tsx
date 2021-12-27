@@ -35,14 +35,25 @@ export default function Login(props: ILogin) {
   return (
     <div className={classes.container}>
       <div className={classes.canvas}>
-        <canvas className={classes.canvas1}></canvas>
-        <canvas className={classes.canvas2}></canvas>
-        <h3 className={classes.title}>Login</h3>
+        {/* <canvas className={classes.canvas1}></canvas>
+        <canvas className={classes.canvas2}></canvas> */}
+        <div
+          style={{
+            backgroundImage: `url(${process.env.PUBLIC_URL} images/locations_bg.jpeg)`,
+            backgroundSize: "cover",
+            height: "100%",
+          }}
+        ></div>
+        {/* <h3 className={classes.title}>Login</h3> */}
       </div>
       <div className={classes.content}>
         <form className={classes.form}>
-          <h3 className={clsx(classes.textCenter, classes.fs32, classes.mrb10)}>Log Into Dashboard</h3>
-          <p className={clsx(classes.textCenter, classes.mrb50)}>Enter your login details below</p>
+          <h3 className={clsx(classes.textCenter, classes.fs32, classes.mrb10)}>
+            Log Into Dashboard
+          </h3>
+          <p className={clsx(classes.textCenter, classes.mrb50)}>
+            Enter your login details below
+          </p>
           <TextField
             label="Username"
             size="small"

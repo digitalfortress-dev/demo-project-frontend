@@ -23,10 +23,11 @@ export const useStyles = makeStyles(() => ({
   btn: {
     boxShadow: 'none !important',
     textTransform: 'capitalize !important' as any,
+    backgroundColor: '#85D5EF !important',
   },
   contactIcon: {
     fontSize: '30px !important',
-    color: blue[500],
+    color: '#85D5EF',
     marginRight: 15,
   },
   tableContainer: {

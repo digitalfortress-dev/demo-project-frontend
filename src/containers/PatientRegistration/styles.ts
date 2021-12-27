@@ -111,7 +111,7 @@ export const useStyles = makeStyles(() => ({
   content: {
     width: '45%',
     height: '100%',
-    // display: 'flex',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -152,5 +152,14 @@ export const useStyles = makeStyles(() => ({
   }, 
   textCenter: {
     textAlign: 'center',
+  },
+  bgGray: {
+    backgroundColor: 'rgb(250, 250, 250)',
+  },
+  border: {
+    boxShadow: 'rgb(0 0 0 / 12%) 0px 8px 14px 0px',
+    borderRadius: 4,
+    backgroundColor: 'rgb(255, 255, 255)',
+    border: '1px solid rgb(224, 224, 224)',
   }
 }));
