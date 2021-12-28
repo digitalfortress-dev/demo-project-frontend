@@ -1,8 +1,8 @@
 import { Paper } from "@mui/material";
-import { useStyles } from './styles';
+import { useStyles } from "./styles";
 
 interface ILayout {
-  children: JSX.Element,
+  children: JSX.Element;
 }
 
 function Layout(props: ILayout) {
@@ -11,10 +11,6 @@ function Layout(props: ILayout) {
 
   return (
     <Paper square className={classes.paper}>
-      {/* <div>
-        <canvas className={classes.canvas1}></canvas>
-        <canvas className={classes.canvas2}></canvas>
-      </div> */}
       {children}
     </Paper>
   );

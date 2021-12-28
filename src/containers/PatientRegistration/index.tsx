@@ -9,7 +9,6 @@ import UploadFile from "../../components/UploadFile";
 
 import { useStyles } from "./styles";
 import { validateEmail } from "../../utils";
-import { url } from "inspector";
 
 interface IProps {
   userLoggedIn: boolean;
@@ -89,8 +88,6 @@ function PatientRegistration(props: IProps) {
     >
       {!userLoggedIn && (
         <div className={classes.canvas}>
-          {/* <canvas className={classes.canvas1}></canvas>
-          <canvas className={classes.canvas2}></canvas> */}
           <h3 className={classes.title}>Booking</h3>
           <div
             style={{
@@ -105,7 +102,6 @@ function PatientRegistration(props: IProps) {
         <h3></h3>
         <form
           className={clsx(classes.form, {
-            [classes.white]: !userLoggedIn,
             [classes.border]: userLoggedIn
           })}
         >

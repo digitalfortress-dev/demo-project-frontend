@@ -35,8 +35,6 @@ export default function Login(props: ILogin) {
   return (
     <div className={classes.container}>
       <div className={classes.canvas}>
-        {/* <canvas className={classes.canvas1}></canvas>
-        <canvas className={classes.canvas2}></canvas> */}
         <div
           style={{
             backgroundImage: `url(${process.env.PUBLIC_URL} images/locations_bg.jpeg)`,
@@ -44,7 +42,6 @@ export default function Login(props: ILogin) {
             height: "100%",
           }}
         ></div>
-        {/* <h3 className={classes.title}>Login</h3> */}
       </div>
       <div className={classes.content}>
         <form className={classes.form}>
