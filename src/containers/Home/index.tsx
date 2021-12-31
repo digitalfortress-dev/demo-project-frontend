@@ -24,7 +24,7 @@ export default function Home() {
 
   const getPatients = useCallback(async () => {
     try {
-      const { data } = await axiosClient.get("/patients");
+      const { data } = await axiosClient.get("/admin/patients");
       setPatients(data);
     } catch (error: any) {
       const err = { ...error };

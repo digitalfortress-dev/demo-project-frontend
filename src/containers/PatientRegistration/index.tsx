@@ -94,7 +94,6 @@ function PatientRegistration(props: IProps) {
       booking_time,
       file,
     } = input;
-    console.log("🚀 ~ file: index.tsx ~ line 96 ~ onSubmitForm ~ file", file);
     const payload = {
       first_name,
       last_name,
@@ -107,7 +106,7 @@ function PatientRegistration(props: IProps) {
     try {
       const formData = new FormData();
       formData.append("image", file.file[0]);
-      const res = await axiosClient.post("upload-photo", formData);
+      const res = await axiosClient.post("/upload-photo", formData);
       await axiosClient.post("/patient", { ...payload, src_picture: res.data });
       setIsRequestSuccess(true);
     } catch (error: any) {
@@ -203,7 +202,10 @@ function PatientRegistration(props: IProps) {
             <DatePicker
               name="birthday"
               value={input.birthday}
+              inputFormat="MM/dd/yyyy"
+              ampmInClock={false}
               label="Date of Birth"
+              type='date'
               onChange={onSelectBirthDay}
               className={clsx(classes.w100, classes.mrb15, {
                 [classes.input]: !userLoggedIn,
