@@ -47,7 +47,9 @@ function PatientRegistration(props: IProps) {
   };
 
   const onSelectBirthDay = (value: Date | null) => {
-    setInput((pre) => ({ ...pre, birthday: value }));
+    setErrMessage('');
+    if (value) return setInput((pre) => ({ ...pre, birthday: value }));
+    return setErrMessage('The Date of Birth is invalid')
   };
   const onSelectBookingTime = (value: Date) => {
     setInput((pre) => ({ ...pre, booking_time: value }));
@@ -104,10 +106,15 @@ function PatientRegistration(props: IProps) {
       date_of_birth: moment(birthday).unix(),
     };
     try {
-      const formData = new FormData();
-      formData.append("image", file.file[0]);
-      const res = await axiosClient.post("/upload-photo", formData);
-      await axiosClient.post("/patient", { ...payload, src_picture: res.data });
+      let src_picture = "";
+      if (file.file) {
+        const formData = new FormData();
+        formData.append("image", file.file[0]);
+        const res = await axiosClient.post("/upload-photo", formData);
+        src_picture = res.data;
+      }
+
+      await axiosClient.post("/patient", { ...payload, src_picture });
       setIsRequestSuccess(true);
     } catch (error: any) {
       const err = { ...error };
@@ -205,7 +212,7 @@ function PatientRegistration(props: IProps) {
               inputFormat="MM/dd/yyyy"
               ampmInClock={false}
               label="Date of Birth"
-              type='date'
+              type="date"
               onChange={onSelectBirthDay}
               className={clsx(classes.w100, classes.mrb15, {
                 [classes.input]: !userLoggedIn,
