@@ -2,9 +2,9 @@ import { TextField } from "@mui/material";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateTimePicker from "@mui/lab/DateTimePicker";
-import { DesktopDatePicker } from "@mui/lab";
+import { DatePicker } from '@mui/lab';
 
-function DatePicker(props: any) {
+function DatePickers(props: any) {
   const {
     value = new Date(),
     onChange,
@@ -36,7 +36,7 @@ function DatePicker(props: any) {
         />
       )}
       {type === "date" && (
-        <DesktopDatePicker
+        <DatePicker
           {...props}
           label={label}
           value={value}
@@ -54,4 +54,4 @@ function DatePicker(props: any) {
     </LocalizationProvider>
   );
 }
-export default DatePicker;
+export default DatePickers;
