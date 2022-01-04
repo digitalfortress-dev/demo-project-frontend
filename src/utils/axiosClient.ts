@@ -12,7 +12,7 @@ class AxiosClient {
     }
 
     this.axiosClient = axios.create({
-      baseURL: process.env.REACT_APP_ENPOINT || "http://localhost:1323/api/",
+      baseURL: process.env.REACT_APP_ENPOINT || "http://localhost:1323/api/v1/",
       headers: {
         "Content-Type": "application/json",
       },

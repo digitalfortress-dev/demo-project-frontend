@@ -110,11 +110,11 @@ function PatientRegistration(props: IProps) {
       if (file.file) {
         const formData = new FormData();
         formData.append("image", file.file[0]);
-        const res = await axiosClient.post("/upload-photo", formData);
+        const res = await axiosClient.post("/photos", formData);
         src_picture = res.data;
       }
 
-      await axiosClient.post("/patient", { ...payload, src_picture });
+      await axiosClient.post("/patients", { ...payload, src_picture });
       setIsRequestSuccess(true);
     } catch (error: any) {
       const err = { ...error };
