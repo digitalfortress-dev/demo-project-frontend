@@ -59,7 +59,7 @@ export default function Row({ row }: any) {
                     Date of Birth:{" "}
                     <strong>
                       {row.date_of_birth
-                        ? moment(row.date_of_birth).format("ll")
+                        ? moment(row.date_of_birth * 1000).format("ll")
                         : "[N/A]"}
                     </strong>
                   </p>

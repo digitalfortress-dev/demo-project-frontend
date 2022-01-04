@@ -46,9 +46,9 @@ function PatientRegistration(props: IProps) {
     setInput((pre) => ({ ...pre, [name]: value }));
   };
 
-  const onSelectBirthDay = (value: Date | null) => {
+  const onSelectBirthDay = (value: Date | null | any) => {
     setErrMessage('');
-    if (value) return setInput((pre) => ({ ...pre, birthday: value }));
+    if (value.toString() !== 'Invalid Date') return setInput((pre) => ({ ...pre, birthday: value }));
     return setErrMessage('The Date of Birth is invalid')
   };
   const onSelectBookingTime = (value: Date) => {
